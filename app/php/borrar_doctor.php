@@ -38,22 +38,28 @@ if (isset($_REQUEST['id_doctor'])) {
  * SQL queries
  * Get data to display
  */
-$query = "delete from doctores where id_doctor=" . $id_doctor;
-$query_res = mysql_query($query);
-
-// Comprobar el resultado
-if (!$query_res) {
-    if (mysql_errno() == 1451) {
-        $mensaje = "Imposible borrar este doctor, tiene otras dependencias. Borre estas dependencias primero";
-        $estado = mysql_errno();
+$query0 = "delete from clinica_doctor where id_doctor=" . $id_doctor;
+$query0_res = mysql_query($query0);
+if (!$query0_res) {
+    $mensaje = 'Error en la consulta: ' . mysql_error() . "\n";
+    $estado = mysql_errno();
+    // Comprobar el resultado
     } else {
-        $mensaje = 'Error en la consulta: ' . mysql_error() . "\n";
-        $estado = mysql_errno();
+        $query = "delete from doctores where id_doctor=" . $id_doctor;
+        $query_res = mysql_query($query);
+        if (!$query_res) {
+        if (mysql_errno() == 1451) {
+            $mensaje = "Imposible borrar este doctor, tiene otras dependencias. Borre estas dependencias primero";
+            $estado = mysql_errno();
+        } else {
+            $mensaje = "Actualización correcta";
+            $estado = 0;
+        }
+        
     }
-} else {
-    $mensaje = "Actualización correcta";
-    $estado = 0;
+
 }
+
 $resultado = array();
 $resultado[] = array(
     'mensaje' => $mensaje,

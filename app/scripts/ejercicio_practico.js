@@ -99,11 +99,10 @@
                    alert("Ha entrado en error");
                },
                success: function(data) {
-                   //obtenemos el mensaje del servidor, es un array!!!
-                   //var mensaje = (data["mensaje"]) //o data[0], en función del tipo de array!!
-                   //actualizamos datatables:
-                   /*para volver a pedir vía ajax los datos de la tabla*/
-                   miTabla.fnDraw();
+                   var $mitabla = $("#miTabla").dataTable({
+                       bRetrieve: true
+                   });
+                   $mitabla.fnDraw();
                },
                complete: {
                    //si queremos hacer algo al terminar la petición ajax
@@ -115,7 +114,7 @@
            var idDoctor = $('#idDoctor').val();
            var nombre = $('#nombre').val();
            var numcolegiado = $('#numcolegiado').val();
-
+           var clinicas = 
            $.ajax({
                type: 'POST',
                dataType: 'json',
@@ -248,7 +247,7 @@
                }
            });
            $('#tabla').fadeIn(100);
-           $('#formulario').fadeOut(100);
+          $('#formularioCrear').fadeOut(100);
        });
    });
 
