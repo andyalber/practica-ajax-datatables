@@ -57,7 +57,10 @@
                'visible': false,
            }, {
                "targets": [3],
-               "visible": false
+               "visible": false,
+           }, {
+                "targets": [5,6],
+                "orderable": false
            }],
        });
         /* Usamos esto para cargar las clinicas de los doctores */
@@ -181,30 +184,38 @@
            nombre = $('#nombre').val();
            numcolegiado = $('#numcolegiado').val();
            id_clinica = $('#clinicas').val();
-
-           $.ajax({
-               type: 'POST',
-               dataType: 'json',
-               //url: 'php/modificar_doctores.php',
-               url: 'http://localhost/practica-ajax-datatables/app/php/modificar_doctores.php',
-               data: {
-                   idDoctor: idDoctor,
-                   nombre: nombre,
-                   numcolegiado: numcolegiado,
-                   id_clinica:id_clinica                
-               },
-               error: function(xhr, status, error) {
+           var confirmacion = confirm('Se va a modificar los datos del doctor '+nombre+' ¿Estas seguro?')
+           if (confirmacion == true)
+           {
+              $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                //url: 'php/modificar_doctores.php',
+                url: 'http://localhost/practica-ajax-datatables/app/php/modificar_doctores.php',
+                data: {
+                  idDoctor: idDoctor,
+                  nombre: nombre,
+                  numcolegiado: numcolegiado,
+                  id_clinica:id_clinica                
+                },
+                error: function(xhr, status, error) {
                    //mostraríamos alguna ventana de alerta con el error
                    alert("Ha entrado en error");
-               },
-               success: function(data) {
+                },
+                success: function(data) {
                   var $mitabla =  $("#miTabla").dataTable( { bRetrieve : true } );
                   $mitabla.fnDraw();           
-               },
-               complete: {
+                },
+                complete: {
                    //si queremos hacer algo al terminar la petición ajax
-               }
-           });
+                }
+                });
+              alert('Se ha editado al doctor '+nombre+' con exito');
+            }
+            else
+            {
+              alert('Se ha cancelado la edicion');
+            }
            $('#tabla').fadeIn(100);
            $('#formulario').fadeOut(100);      
        });
