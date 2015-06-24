@@ -1,0 +1,9 @@
+{
+  "name": "practica-validacion-formularios",
+  "private": true,
+  "dependencies": {
+    "jquery-validate": "~1.13.1",
+    "bootstrap": "~3.3.4",
+    "eonasdan-bootstrap-datetimepicker": "~4.7.14"
+  }
+}

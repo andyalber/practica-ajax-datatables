@@ -3,8 +3,9 @@
        var miTabla = $('#miTabla').DataTable({
            'processing': true,
            'serverSide': true,
-           'ajax': 'http://localhost/practica-ajax-datatables/app/php/cargar_doctores.php',
-           //'ajax': 'php/cargar_doctores.php',
+           //'ajax': 'http://localhost/practica-ajax-datatables/app/php/cargar_doctores.php',
+           'ajax': 'php/cargar_doctores.php',
+           //'ajax': 'http://localhost/html/practica-ajax-datatables/app/php/cargar_doctores.php',
            'language': {
                'sProcessing': 'Procesando...',
                'sLengthMenu': 'Mostrar _MENU_ registros',
@@ -44,12 +45,16 @@
                /*añadimos las clases editarbtn y borrarbtn para procesar los eventos click de los botones. No lo hacemos mediante id ya que habrá más de un
                botón de edición o borrado*/
                'render': function(data) {
-                   return '<a class="btn btn-primary editarbtn" href=http://localhost/php/modificar_doctores.php?id_doctor=' + data + '>Editar</a>';
+                   //return '<a class="btn btn-primary editarbtn" href=http://localhost/php/modificar_doctores.php?id_doctor=' + data + '>Editar</a>';
+                   //return '<a class="btn btn-primary editarbtn" href=http://localhost/html/php/modificar_doctores.php?id_doctor=' + data + '>Editar</a>';
+                   return '<a class="btn btn-primary editarbtn" href=http://www.aalvarez.infenlaces.com/Juanda/datatables2/php/modificar_doctores.php?id_doctor=' + data + '>Editar</a>';
                }
            }, {
                'data': 'nombre',
                'render': function(data) {
-                   return '<a class="btn btn-warning borrarbtn" href=http://localhost/php/borrar_doctor.php?id_doctor=' + data + '>Borrar</a>'
+                   //return '<a class="btn btn-warning borrarbtn" href=http://localhost/php/borrar_doctor.php?id_doctor=' + data + '>Borrar</a>'
+                   //return '<a class="btn btn-warning borrarbtn" href=http://localhost/html/php/borrar_doctor.php?id_doctor=' + data + '>Borrar</a>'
+                   return '<a class="btn btn-warning borrarbtn" href=http://www.aalvarez.infenlaces.com/Juanda/datatables2/php/borrar_doctor.php?id_doctor=' + data + '>Borrar</a>'
                }
            }],
            'columnDefs': [{
@@ -68,8 +73,9 @@
            $.ajax({
                type: 'POST',
                dataType: 'json',
-               //url: 'php/listar_clinica.php',
-               url: 'http://localhost/practica-ajax-datatables/app/php/listar_clinica.php',
+               url: 'php/listar_clinica.php',
+               //url: 'http://localhost/practica-ajax-datatables/app/php/listar_clinica.php',
+               //url: 'http://localhost/html/practica-ajax-datatables/app/php/listar_clinica.php',
                
                //estos son los datos que queremos actualizar, en json:
                // {parametro1: valor1, parametro2, valor2, ….}
@@ -146,8 +152,9 @@
                /*en principio el type para api restful sería delete pero no lo recogeríamos en $_REQUEST, así que queda como POST*/
                type: 'POST',
                dataType: 'json',
-               //url: 'php/borrar_doctor.php',
-               url: 'http://localhost/practica-ajax-datatables/app/php/borrar_doctor.php',
+               url: 'php/borrar_doctor.php',
+               //url: 'http://localhost/practica-ajax-datatables/app/php/borrar_doctor.php',
+               //url: 'http://localhost/html/practica-ajax-datatables/app/php/borrar_doctor.php',
                
                //estos son los datos que queremos actualizar, en json:
                data: {
@@ -190,8 +197,9 @@
               $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                //url: 'php/modificar_doctores.php',
-                url: 'http://localhost/practica-ajax-datatables/app/php/modificar_doctores.php',
+                url: 'php/modificar_doctores.php',
+                //url: 'http://localhost/practica-ajax-datatables/app/php/modificar_doctores.php',
+                //url: 'http://localhost/html/practica-ajax-datatables/app/php/modificar_doctores.php',
                 data: {
                   idDoctor: idDoctor,
                   nombre: nombre,
@@ -225,8 +233,9 @@
            $.ajax({
                type: 'POST',
                dataType: 'json',
-               //url: 'php/listar_clinica.php',
-               url: 'http://localhost/practica-ajax-datatables/app/php/listar_clinica.php',
+               url: 'php/listar_clinica.php',
+               //url: 'http://localhost/practica-ajax-datatables/app/php/listar_clinica.php',
+               //url: 'http://localhost/html/practica-ajax-datatables/app/php/listar_clinica.php',
 
                error: function(xhr, status, error) {
 
@@ -259,8 +268,9 @@
            $.ajax({
                type: 'POST',
                dataType: 'json',
-               //url: 'php/crear_doctor.php',
-               url: 'http://localhost/practica-ajax-datatables/app/php/crear_doctor.php',
+               url: 'php/crear_doctor.php',
+               //url: 'http://localhost/practica-ajax-datatables/app/php/crear_doctor.php',
+               //url: 'http://localhost/html/practica-ajax-datatables/app/php/crear_doctor.php',
                data: {
                    nombreNuevo: nombreNuevo,
                    numcolegiadoNuevo: numcolegiadoNuevo,
